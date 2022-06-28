@@ -1,0 +1,136 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                String    @id @default(uuid())
+  firstName         String
+  lastName          String
+  email             String?   @unique
+  username          String    @unique
+  password          String
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  storesEmployeed   Employee[]
+  generalUsers      GeneralUser[]
+}
+
+model Store {
+  id                  String    @id @default(uuid())
+  name                String
+  code                String    @unique
+  address             String
+  phone               String
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  productExistences   ProductExistences[]
+  employees           Employee[]
+}
+
+model Department {
+  id          String    @id @default(uuid())
+  name        String
+  code        String    @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  sections    Section[]
+}
+
+model Section {
+  id            String      @id @default(uuid())
+  name          String
+  code          String      @unique
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  departmentId  String
+  department    Department  @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  products      Product[]
+}
+
+model Product {
+  id                String    @id @default(uuid())
+  upc               String    @unique
+  description       String
+  code              String    @unique
+  price             Float
+  unity             String
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  storeExistences   ProductExistences[]
+
+  sectionId         String
+  section           Section   @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+}
+
+model Role {
+  id            String    @id @default(uuid())
+  name          String
+  description   String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  permissions   RolePermissions[]
+  employees     Employee[]
+  generalUsers  GeneralUser[]
+}
+
+model Permission {
+  id            String    @id
+  category      String
+  level         String
+  description   String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  roles         RolePermissions[]
+}
+
+model Employee {
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  storeId   String
+  store     Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  roleId    String
+  role      Role    @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, storeId, roleId])
+}
+
+model GeneralUser {
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleId    String
+  role      Role    @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+}
+
+model RolePermissions {
+  roleId        String
+  role          Role        @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permissionId  String
+  permission    Permission  @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model ProductExistences {
+  productId   String
+  product     Product   @relation(fields: [productId], references: [id])
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id])
+  existences  Float
+
+  @@id([productId, storeId])
+}

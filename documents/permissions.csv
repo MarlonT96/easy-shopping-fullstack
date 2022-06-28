@@ -1,0 +1,39 @@
+id,category,level,description
+get_any_employee_0010,Employee,Super Admin,Ability to get any employee
+edit_any_employee_0020,Employee,Super Admin,Ability to edit any employee
+delete_any_employee_0030,Employee,Super Admin,Ability to delete any employee
+assign_employee_to_any_store_0041,Employee,Super Admin,Ability to assign any employee to any store
+remove_employee_from_store_0051,Employee,Super Admin,Ability to remove store from any employee
+create_employee_0100,Employee,Store Admin,Ability to create employees
+get_my_employee_0110,Employee,Store Admin,Ability to get my store employees
+edit_my_employee_0120,Employee,Store Admin,Ability to edit my employees
+delete_my_employee_0130,Employee,Store Admin,Ability to delete my employees
+assign_store_to_my_employee_0141,Employee,Store Admin,Ability to assign store to my employees
+remove_store_from_my_employee_0151,Employee,Store Admin,Ability to remove store from any employee
+create_store_1000,Store,Super Admin,Ability to create stores
+get_any_store_1010,Store,Super Admin,Ability to get any store
+edit_any_store_1020,Store,Super Admin,Ability to edit any store
+delete_any_store_1030,Store,Super Admin,Ability to delete any store
+get_my_store_1010,Store,Store Admin,Ability to get any store
+edit_my_store_1020,Store,Store Admin,Ability to edit any store
+delete_my_store_1030,Store,Store Admin,Ability to delete any store
+create_department_2000,Product,Super Admin,Ability to create departments
+create_section_2001,Product,Super Admin,Ability to create sections
+create_product_2002,Product,Super Admin,Ability to create products
+edit_department_2020,Product,Super Admin,Ability to edit departments
+edit_section_2021,Product,Super Admin,Ability to edit sections
+edit_product_2022,Product,Super Admin,Ability to edit products
+delete_department_2020,Product,Super Admin,Ability to delete departments
+delete_section_2021,Product,Super Admin,Ability to delete sections
+delete_product_2022,Product,Super Admin,Ability to delete products
+get_department_2200,Product,Employee,Ability to get departments
+get_section_2201,Product,Employee,Ability to get sections
+get_product_2202,Product,Employee,Ability to get products
+increment_existences_3020,Existences,Super Admin,Ability to add existences in products for any store
+decrement_existences_3021,Existences,Super Admin,Ability to discount existences in products for any store
+edit_existences_3022,Existences,Super Admin,Ability to update existences in products for any store
+authorize_existences_change_3060,Existences,Super Admin,Ability to authorize existence changes in products for any store
+authorize_existences_change_in_my_store_3160,Existences,Store Admin,Ability to authorize existence changes in products for my store
+increment_existences_in_my_store_3220,Existences,Employee,Ability to add existences in products for my store
+decrement_existences_in_my_store_3221,Existences,Employee,Ability to discount existences in products for my store
+edit_existences_in_my_store_3222,Existences,Employee,Ability to update existences in products for my store
