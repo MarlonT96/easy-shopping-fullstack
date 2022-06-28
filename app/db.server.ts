@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+interface CustomGlobalThis {
+  __db?: PrismaClient
+}
 
 let db: PrismaClient
-
-declare global {
-  let __db: PrismaClient | undefined
-}
+const global: CustomGlobalThis = {}
 
 if (process.env.NODE_ENV === 'production') {
   db = new PrismaClient()
